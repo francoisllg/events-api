@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Event;
+use App\Models\License;
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,6 +14,10 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+
+    const ADMINISTRATOR_USER = true;
+    const REGULAR_USER = false;
 
     /**
      * The attributes that are mass assignable.
@@ -41,4 +48,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    public function licenses()
+    {
+        return $this->hasMany(License::class);
+    }
 }
