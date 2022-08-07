@@ -19,8 +19,15 @@ class Event extends Model
     protected $fillable = [
         'name',
         'url',
-        'license_id',
+        'licence_id',
+        'user_id',
         'end_date',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     public function license()

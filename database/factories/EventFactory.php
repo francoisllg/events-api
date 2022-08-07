@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Licence;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +21,8 @@ class EventFactory extends Factory
         return [
             'name' => fake()->name(),
             'url' => fake()->url(),
-            'end_date' => fake()->date()
+            'end_date' => fake()->date(),
+            'user_id' => User::all()->random()->id,
         ];
     }
 }

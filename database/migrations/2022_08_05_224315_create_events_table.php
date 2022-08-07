@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->uuid('licence_id')->nullable();
+            $table->uuid('licence_id')->nullable()->unique();
             $table->string('name', 255)->nullable('false');
             $table->string('url', 255)->nullable('false');
             $table->date('end_date')->nullable('false');
