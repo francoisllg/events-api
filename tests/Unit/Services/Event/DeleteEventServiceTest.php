@@ -62,7 +62,7 @@ class DeleteEventServiceTest extends EventModuleUnitTestCase
         $result = $this->service->handle($event_id_to_delete);
 
         //assert
-        $this->assertEquals($events[0]->first()->toArray(), $result);
+        $this->assertEquals($events[0]->first()->id, $result);
 
     }
 }

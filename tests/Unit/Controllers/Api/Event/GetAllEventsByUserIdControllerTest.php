@@ -19,7 +19,7 @@ class GetAllEventsByUserIdControllerTest extends TestCase
 
         // act
         $response = $this->get("/api/users/{$user->id}/events");
-        $response->assertStatus(201);
+        $response->assertStatus(200);
         $response->assertJsonStructure([
             'data' => [
                 '*' => [

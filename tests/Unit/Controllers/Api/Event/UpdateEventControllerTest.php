@@ -15,7 +15,7 @@ class UpdateEventControllerTest extends TestCase
       Event::truncate();
       $old_event = Event::factory(1)->create()->first();
       $update_event_data = [
-            'name' => fake()->word(),
+
             'user_id' => User::all()->random()->id,
             'licence_id' => Licence::all()->random()->id,
             'url' => fake()->url(),
@@ -24,7 +24,7 @@ class UpdateEventControllerTest extends TestCase
 
          // act // assert
          $this->patch("api/events/".$old_event->id, $update_event_data)
-         ->assertStatus(201)
+         ->assertStatus(200)
          ->assertJsonStructure(array_keys($update_event_data), $update_event_data);
 
     }

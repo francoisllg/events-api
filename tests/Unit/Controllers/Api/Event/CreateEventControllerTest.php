@@ -15,7 +15,7 @@ class CreateEventControllerTest extends TestCase
          Event::truncate();
 
          $new_event_data = [
-            'name' => fake()->word(),
+            'name' => 'Test Event',
             'user_id' => User::all()->random()->id,
             'licence_id' => Licence::all()->random()->id,
             'url' => fake()->url(),

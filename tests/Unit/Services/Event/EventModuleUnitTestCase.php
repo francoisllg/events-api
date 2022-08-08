@@ -77,7 +77,7 @@ class EventModuleUnitTestCase extends TestCase
                     $this->assertEquals($expected_event_id, $event_id);
                     return true;
                 })
-            ->andReturn($deleted_event->toArray());
+            ->andReturn($deleted_event->id);
     }
 
 }

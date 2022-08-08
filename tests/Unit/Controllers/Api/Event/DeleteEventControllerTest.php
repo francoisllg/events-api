@@ -15,7 +15,7 @@ class DeleteEventControllerTest extends TestCase
         Event::factory(3)->create();
         $deleted_event = Event::all()->random();
         $this->delete("api/events/{$deleted_event->id}")
-            ->assertStatus(201);
+            ->assertStatus(200);
 
         $this->assertSoftDeleted('events', [
             'id' => $deleted_event->id,
