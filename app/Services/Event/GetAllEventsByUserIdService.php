@@ -14,7 +14,7 @@ class GetAllEventsByUserIdService
     }
 
 
-    public function handle($user_id)
+    public function handle(int $user_id):array
     {
         return $this->eventRepository->getAllEventsByUserId($user_id);
     }

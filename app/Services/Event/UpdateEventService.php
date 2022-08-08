@@ -13,7 +13,7 @@ class UpdateEventService
     }
 
 
-    public function handle(int $event_id,array $updated_event_data)
+    public function handle(int $event_id,array $updated_event_data):array
     {
         return $this->eventRepository->update($event_id,$updated_event_data);
     }

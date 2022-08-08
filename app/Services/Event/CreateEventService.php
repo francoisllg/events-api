@@ -15,9 +15,9 @@ class CreateEventService
     }
 
 
-    public function handle(array $data)
+    public function handle(array $new_event_data):array
     {
-        return $this->eventRepository->create($data);
+        return $this->eventRepository->create($new_event_data);
     }
 
 }

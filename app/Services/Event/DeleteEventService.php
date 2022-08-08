@@ -15,7 +15,7 @@ class DeleteEventService
     }
 
 
-    public function handle($event_id)
+    public function handle(int $event_id):int
     {
         return $this->eventRepository->delete($event_id);
     }

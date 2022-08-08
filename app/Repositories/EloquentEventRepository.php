@@ -39,11 +39,11 @@ final class EloquentEventRepository implements EventRepositoryInterface
         return $this->model->where('user_id', $user_id)->get()->toArray();
     }
 
-    public function delete(int $event_id):array
+    public function delete(int $event_id):int
     {
         $event = $this->model->findOrFail($event_id);
         $event->delete();
-        return $event->toArray();
+        return $event_id;
     }
 
 
