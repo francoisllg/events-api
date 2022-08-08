@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Api\Event;
+
+use App\Http\Controllers\Api\ApiController as ApiApiController;
 use App\Http\Controllers\Controller;
 use App\Services\Event\DeleteEventService;
+use App\Http\Controllers\ApiController;
 
 
-class DeleteEventController extends Controller
+class DeleteEventController extends ApiApiController
 {
     private DeleteEventService $deleteEventService;
 
@@ -17,7 +20,7 @@ class DeleteEventController extends Controller
     public function handle($event_id)
     {
         $event =  $this->deleteEventService->handle($event_id);
-        return response()->json($event, 201);
+        return $this->successResponse($event, 'Event deleted successfully',201);
     }
 
 }

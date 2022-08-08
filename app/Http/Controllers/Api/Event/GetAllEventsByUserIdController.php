@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Api\Event;
-use App\Http\Controllers\Controller;
+
+use App\Http\Controllers\Api\ApiController;
 use App\Services\Event\GetAllEventsByUserIdService;
 use Illuminate\Http\Request;
 
 
-class GetAllEventsByUserIdController extends Controller
+
+class GetAllEventsByUserIdController extends ApiController
 {
     private GetAllEventsByUserIdService $getAllEventsByUserIdService;
 
@@ -18,7 +20,7 @@ class GetAllEventsByUserIdController extends Controller
     public function handle($user_id)
     {
         $events =  $this->getAllEventsByUserIdService->handle($user_id);
-        return response()->json(['data'=>$events], 201);
+        return $this->successResponse($events, 'Events retrieved successfully',201);
 
     }
 

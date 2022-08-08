@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Api\Event;
-use App\Http\Controllers\Controller;
+
+use App\Http\Controllers\Api\ApiController;
 use App\Services\Event\UpdateEventService;
 use Illuminate\Http\Request;
 
 
-class UpdateEventController extends Controller
+
+
+
+class UpdateEventController extends ApiController
 {
     private UpdateEventService $updateEventService;
 
@@ -18,8 +22,7 @@ class UpdateEventController extends Controller
     public function handle($event_id,Request $request)
     {
         $event =  $this->updateEventService->handle($event_id,$request->all());
-        return response()->json($event, 201);
-
+        return $this->successResponse($event, 'Event updated successfully',201);
     }
 
 }

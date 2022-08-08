@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Api\Event;
-use App\Http\Controllers\Controller;
+
+use App\Http\Controllers\Api\ApiController;
 use App\Services\Event\CreateEventService;
 use Illuminate\Http\Request;
 
-
-class CreateEventController extends Controller
+class CreateEventController extends ApiController
 {
     private CreateEventService $createEventService;
 
@@ -18,7 +18,7 @@ class CreateEventController extends Controller
     public function handle(Request $request)
     {
         $event =  $this->createEventService->handle($request->all());
-        return response()->json($event, 201);
+        return $this->successResponse($event, 'Event created successfully',201);
 
     }
 
