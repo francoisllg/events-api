@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->uuid('licence_id')->nullable()->unique();
-            $table->string('name', 255)->nullable('false');
-            $table->string('url', 255)->nullable('false');
-            $table->date('end_date')->nullable('false');
+            $table->string('name', 255);
+            $table->string('url', 255);
+            $table->date('end_date');
             $table->timestamps();
 
             $table->foreign('licence_id')->references('id')->on('licences')
