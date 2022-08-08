@@ -22,7 +22,7 @@ class CreateEventController extends ApiController
         try
         {
         $newEventData = $request->validated();
-        $newEventData['user_id'] = '2';
+        $newEventData['user_id'] = auth()->user()->id;
         $event =  $this->createEventService->handle($newEventData);
         return $this->successResponse($event, 'Event created successfully',Response::HTTP_CREATED);
         }

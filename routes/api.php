@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Event\CreateEventController;
 use App\Http\Controllers\Api\Event\UpdateEventController;
 use App\Http\Controllers\Api\Event\GetAllEventsByUserIdController;
 use App\Http\Controllers\Api\Event\DeleteEventController;
+use App\Http\Controllers\Api\User\AuthUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +20,19 @@ use App\Http\Controllers\Api\Event\DeleteEventController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Public routes
+Route::post('/login', [AuthUserController::class, 'login']);
 
-Route::group(['prefix' => 'events'], function () {
+//Protected routes
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::group(['prefix' => 'events'], function () {
     Route::post('/', [CreateEventController::class, 'handle']);
     Route::patch('/{event}', [UpdateEventController::class, 'handle']);
     Route::delete('/{event}', [DeleteEventController::class, 'handle']);
-});
+    });
 
-Route::group(['prefix' => 'users'], function () {
-    Route::get('/{user}/events', [GetAllEventsByUserIdController::class, 'handle']);
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/{user}/events', [GetAllEventsByUserIdController::class, 'handle']);
+    });
+
 });
