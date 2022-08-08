@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\Event;
 
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Requests\CreateEventRequest;
 use App\Services\Event\CreateEventService;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class CreateEventController extends ApiController
 {
@@ -15,11 +17,21 @@ class CreateEventController extends ApiController
         $this->createEventService = $createEventService;
     }
 
-    public function handle(Request $request)
+    public function handle(CreateEventRequest $request):JsonResponse
     {
-        $event =  $this->createEventService->handle($request->all());
-        return $this->successResponse($event, 'Event created successfully',201);
+        try
+        {
+        $newEventData = $request->validated();
+        $newEventData['user_id'] = '2';
+        $event =  $this->createEventService->handle($newEventData);
+        return $this->successResponse($event, 'Event created successfully',Response::HTTP_CREATED);
+        }
+        catch (\Exception $exception)
+        {
+            return $this->errorResponse($exception->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
 
     }
+
 
 }
