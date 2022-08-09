@@ -3,7 +3,7 @@ namespace App\Repositories;
 
 use App\Models\Event as EloquentEventModel;
 use App\Interfaces\EventRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
+
 
 
 final class EloquentEventRepository implements EventRepositoryInterface
