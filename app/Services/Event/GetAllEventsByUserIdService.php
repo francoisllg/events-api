@@ -16,7 +16,12 @@ class GetAllEventsByUserIdService
 
     public function handle(int $user_id):array
     {
-        return $this->eventRepository->getAllEventsByUserId($user_id);
+        $results = $this->eventRepository->getAllEventsByUserId($user_id);
+        if(!empty($results)){
+            return $results;
+        }else{
+            throw new \Exception('No available events for this user');
+        }
     }
 
 }

@@ -26,6 +26,7 @@ final class EloquentEventRepository implements EventRepositoryInterface
     {
       $event = $this->model->findOrFail($event_id);
       $event->update($updated_event_data);
+      $event->save();
       return $event->toArray();
     }
 

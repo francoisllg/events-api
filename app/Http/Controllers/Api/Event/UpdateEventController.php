@@ -23,6 +23,7 @@ class UpdateEventController extends ApiController
     {
         try
         {
+
             $validated_info = $request->validated();
             $event =  $this->updateEventService->handle($event_id,$validated_info);
             return $this->successResponse($event, 'Event updated successfully',Response::HTTP_OK);

@@ -6,6 +6,9 @@ use App\Traits\ApiResponserTrait;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+
 
 use Throwable;
 
@@ -63,6 +66,16 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ModelNotFoundException) {
             $modelo = class_basename($exception->getModel());
             return $this->errorResponse("No query results for model {$modelo} with the specified id", 404);
+        }
+
+        if ($exception instanceof NotFoundHttpException) {
+            return $this->errorResponse("This route does not exist", 404);
+
+        }
+
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return $this->errorResponse("This method is not allowed for this route", 403);
+
         }
         return parent::render($request, $exception);
     }

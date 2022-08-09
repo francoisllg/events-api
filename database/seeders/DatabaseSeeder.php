@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
     {
        $this->call(UsersTableSeeder::class);
        Licence::factory(5)->create();
-       //Event::factory(1)->create();
+       Event::factory(1)->create();
     }
 }
