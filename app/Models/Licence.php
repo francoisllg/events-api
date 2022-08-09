@@ -14,7 +14,7 @@ class Licence extends Model
     use UuidTrait;
 
     const STATUS_AVAILABLE = 1;
-    const STATUS_NOT_AVAILABLE = 0;
+    const STATUS_UNAVAILABLE = 0;
 
     /**
      * The attributes that are mass assignable.
