@@ -1,6 +1,6 @@
 <?
 
-namespace Tests\Unit\Controllers\Api\Event;
+namespace Tests\Feature\Controllers\Api\Event;
 use App\Models\User;
 use App\Models\Licence;
 use App\Models\Event;
@@ -13,9 +13,12 @@ class DeleteEventControllerTest extends TestCase
     {
         Event::truncate();
         Event::factory(3)->create();
+
         $deleted_event = Event::all()->random();
-        $this->delete("api/events/{$deleted_event->id}")
-            ->assertStatus(200);
+
+        $this->actingAs(User::where('id', $deleted_event->user_id)->first())
+        ->delete("api/events/{$deleted_event->id}")
+        ->assertStatus(200);
 
         $this->assertSoftDeleted('events', [
             'id' => $deleted_event->id,
@@ -26,7 +29,5 @@ class DeleteEventControllerTest extends TestCase
             'end_date' => $deleted_event->end_date,
         ]);
         $this->assertCount(2, Event::all());
-
-
     }
 }

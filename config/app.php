@@ -200,6 +200,8 @@ return [
          */
 
          App\Providers\EventRepositoryServiceProvider::class,
+         App\Providers\LicenceRepositoryServiceProvider::class,
+         App\Providers\UserRepositoryServiceProvider::class,
 
 
     ],

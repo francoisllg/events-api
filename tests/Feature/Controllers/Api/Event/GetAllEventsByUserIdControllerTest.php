@@ -1,8 +1,7 @@
 <?
 
-namespace Tests\Unit\Controllers\Api\Event;
+namespace Tests\Feature\Controllers\Api\Event;
 use App\Models\User;
-use App\Models\Licence;
 use App\Models\Event;
 use Tests\TestCase;
 
@@ -18,7 +17,8 @@ class GetAllEventsByUserIdControllerTest extends TestCase
         $events = Event::factory()->count(3)->create(['user_id' => $user->id]);
 
         // act
-        $response = $this->get("/api/users/{$user->id}/events");
+        $response = $this->actingAs(User::where('id', $user->id)->first())
+        ->get("/api/users/{$user->id}/events");
         $response->assertStatus(200);
         $response->assertJsonStructure([
             'data' => [
