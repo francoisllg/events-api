@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Event;
-use App\Models\License;
+use App\Models\Licence;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -54,8 +54,8 @@ class User extends Authenticatable
         return $this->hasMany(Event::class);
     }
 
-    public function licenses()
+    public function licences()
     {
-        return $this->hasMany(License::class);
+        return $this->hasMany(Licence::class);
     }
 }

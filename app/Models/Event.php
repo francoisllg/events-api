@@ -30,9 +30,9 @@ class Event extends Model
         'deleted_at',
     ];
 
-    public function license()
+    public function licence()
     {
-        return $this->hasOne(License::class);
+        return $this->hasOne(Licence::class);
     }
 
 
