@@ -39,7 +39,7 @@ Generate a new application key
 
 ## Usage
 
-First you have the make the migrations
+First you have to the make the migrations
 
 
 ```php
@@ -53,7 +53,7 @@ php artisan test
 ```
 
 If you want to test the routes with postman, you have to login.
-The users for login are (after the migration and seed of the database)
+The users for login are (after the migration and seed of the database) these ones:
 
 ```php
 Admin user:
@@ -65,6 +65,7 @@ user: user@bmotionav.com
 pass: password
 ```
 
+This app uses Sanctum for authentication. After login, in the api response you will get a token. This token must be send as Bearer Token in the header of your petition
 
 ## API Routes
 In order to access to the protected routes you have to login
