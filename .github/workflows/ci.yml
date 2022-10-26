@@ -25,4 +25,4 @@ jobs:
 
       - name: Run the tests
         working-directory: ./
-        run: composer phpunit
+        run: php artisan test
